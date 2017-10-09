@@ -13,6 +13,14 @@ java --module-path mods -m com.opensource/com.opensource.Main
 ```bash
 jlink --module-path ~/.jenv/versions/9/jmods:mods --add-modules com.opensource --output output --launcher ls=com.opensource/com.opensource.Main
 ```
+**Run the linked image**
+```bash
+./output/bin/ls purple yellow
+```
+**View the image disk space**
+```bash
+du -sh output
+```
 **Create a jmod file**
 ```bash
 jmod create --class-path mods/com.opensource com.opensource.jmod
