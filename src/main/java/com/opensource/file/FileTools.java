@@ -1,6 +1,7 @@
 package com.opensource.file;
 
 import com.opensource.color.Color;
+import com.opensource.database.DatabaseTools;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -25,5 +26,8 @@ public class FileTools {
         return null;
     }
 
+    public static void saveSegments(String path) {
+        DatabaseTools.saveSegments(path);
+    }
 
 }

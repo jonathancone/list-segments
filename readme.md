@@ -3,7 +3,11 @@ list-segments - Java 9 Modules
 
 **Compile the module**
 ```bash
-javac -d mods/com.opensource src/main/java/module-info.java  src/main/java/com/opensource/Main.java src/main/java/com/opensource/file/FileTools.java src/main/java/com/opensource/color/Color.java
+# Compile
+javac -d mods/com.opensource -sourcepath src/main/java src/main/java/com/opensource/Main.java 
+
+# View
+tree mods/com.opensource
 ```
 **Run the module**
 ```bash
@@ -12,7 +16,7 @@ java --module-path mods -m com.opensource/com.opensource.Main
 **Create a modular JAR file**
 ```bash
 # Create it
-jar cfev0 com.opensource.jar com.opensource.Main target/classes -C target/classes com
+jar cfev0 com.opensource.jar com.opensource.Main mods/com.opensource -C mods/com.opensource com
 
 # Run it
 java -jar com.opensource.jar blue cyan
@@ -27,6 +31,12 @@ jdeps com.opensource.jar
 **Create a runtime image**
 ```bash
 jlink --module-path ~/.jenv/versions/9/jmods:mods --add-modules com.opensource --output output --launcher ls=com.opensource/com.opensource.Main
+
+# Compare JVM size
+du -sh $(/usr/libexec/java_home)
+
+# With module size
+du -sh output
 ```
 **Run the linked image**
 ```bash
